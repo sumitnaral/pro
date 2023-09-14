@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe List</title>
+    <style>
+        /* Add your CSS styles here for layout, buttons, and search bar */
+    </style>
+</head>
+<body>
+    <h1>Recipe List</h1>
+
+    <!-- Search Bar -->
+    <input type="text" id="searchInput" placeholder="Search recipes...">
+    <button onclick="searchRecipes()">Search</button>
+
+    <!-- Recipe List -->
+    <ul id="recipeList">
+        <!-- Example Recipe Item -->
+        <li>
+            <img src="thumbnail_image_url.jpg" alt="Recipe Thumbnail">
+            <h2>Recipe Title 1</h2>
+            <p>Brief description of the recipe.</p>
+            <button onclick="viewRecipe(1)">View Details</button>
+            <button onclick="deleteRecipe(1)">Delete</button>
+        </li>
+        <!-- Add more recipe items here -->
+    </ul>
+
+    <!-- JavaScript for interactivity -->
+    <script>
+        // Sample recipe data (replace with actual data)
+        const recipes = [
+            {
+                id: 1,
+                title: "Pancakes",
+                description: "Fluffy pancakes served with maple syrup and berries..",
+                thumbnail: "pan.jpg",
+                details: "Pancakes are a popular and versatile breakfast dish enjoyed in many parts of the worlds."
+
+            },
+            
+            {
+                id: 2,
+                title: "Avacado toast",
+                description: "Fluffy pancakes served with maple syrup and berries..",
+                thumbnail: "pan.jpg",
+                details: "Pancakes are a popular and versatile breakfast dish enjoyed in many parts of the worlds."
+
+
+            },
+            {
+                 id: 2,
+                title: "Homemade pizza",
+                description: "Homemade pizza is a popular and versatile dish that allows you to create a customized pizza with your favorite toppings and flavors.",
+                thumbnail: "pan.jpg",
+                details: "The pizza dough serves as the foundation for your homemade pizza. You can make it using basic ingredients such as flour, water, yeast, sugar, olive oil, and salt."
+
+
+            },
+            {
+               title: "Chicken stir-fry ",
+                description: "Chicken stir-fry is a popular and versatile dish in Asian cuisine and is also enjoyed in many other parts of the world. .",
+                thumbnail: "pan.jpg",
+                details: "This cooking method ensures that the chicken remains tender and the vegetables retain their crispness."  
+            }
+            //Add more recipe objects here
+        ];
+
+        // Function to display recipes
+        function displayRecipes() {
+            const recipeList = document.getElementById("recipeList");
+            recipeList.innerHTML = "";
+
+            recipes.forEach(recipe => {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `
+                    <img src="${recipe.thumbnail}" alt="${recipe.title}">
+                    <h2>${recipe.title}</h2>
+                    <p>${recipe.description}</p>
+                    <button onclick="viewRecipe(${recipe.id})">View Details</button>
+                    <button onclick="deleteRecipe(${recipe.id})">Delete</button>
+                `;
+                recipeList.appendChild(listItem);
+            });
+        }
+
+        // Function to search for recipes
+        function searchRecipes() {
+            const searchInput = document.getElementById("searchInput").value.toLowerCase();
+            const filteredRecipes = recipes.filter(recipe => recipe.title.toLowerCase().includes(searchInput) || recipe.description.toLowerCase().includes(searchInput));
+            displayRecipes(filteredRecipes);
+        }
+
+        // Function to view a recipe's full details (replace with your implementation)
+        function viewRecipe(recipeId) {
+            // Implement this function to display the full details of the recipe.
+        }
+
+        // Function to delete a recipe (replace with your implementation)
+        function deleteRecipe(recipeId) {
+            // Implement this function to delete the recipe.
+        }
+
+        // Initial display of recipes
+        displayRecipes();
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add/Edit Recipe</title>
+    <style>
+        /* Add your CSS styles here for layout and validation messages */
+    </style>
+</head>
+<body>
+    <h1>Add/Edit Recipe</h1>
+
+    <!-- Recipe Form -->
+    <form id="recipeForm" onsubmit="return validateForm()">
+        <label for="title">Recipe Title:</label>
+        <input type="text" id="title" name="title" required>
+        <br><br>
+
+        <label for="ingredients">Ingredients (comma-separated):</label>
+        <input type="text" id="ingredients" name="ingredients" required>
+        <br><br>
+
+        <label for="steps">Preparation Steps:</label>
+        <textarea id="steps" name="steps" rows="6" required></textarea>
+        <br><br>
+
+        <label for="imageURL">Image URL:</label>
+        <input type="url" id="imageURL" name="imageURL" required>
+        <br><br>
+
+        <!-- Submit Button -->
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- JavaScript for form validation -->
+    <script>
+        function validateForm() {
+            const title = document.getElementById("title").value;
+            const ingredients = document.getElementById("ingredients").value;
+            const steps = document.getElementById("steps").value;
+            const imageURL = document.getElementById("imageURL").value;
+
+            // Check if any of the required fields are empty
+            if (!title || !ingredients || !steps || !imageURL) {
+                alert("All fields are required.");
+                return false;
+            }
+
+            // Check if the image URL is a valid URL
+            const urlPattern = /^(http|https):\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,}(\/\S*)?$/;
+            if (!urlPattern.test(imageURL)) {
+                alert("Invalid image URL format.");
+                return false;
+            }
+
+            // Form is valid; you can submit it to your server or handle it as needed
+            return true;
+        }
+    </script>
+</body>
+</html>
